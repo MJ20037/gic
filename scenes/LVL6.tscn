@@ -1,0 +1,283 @@
+[gd_scene load_steps=31 format=4 uid="uid://q1t26xkxykjo"]
+
+[ext_resource type="Script" uid="uid://ck6emy07n4phl" path="res://scripts/GridManager.cs" id="1_5hrxq"]
+[ext_resource type="Texture2D" uid="uid://g0j0v0thbybg" path="res://assets/Tilemap_Flat.png" id="2_qicts"]
+[ext_resource type="Texture2D" uid="uid://0na4jqdmrobp" path="res://assets/bush.png" id="3_ishfu"]
+[ext_resource type="Texture2D" uid="uid://bydpq7yoeb654" path="res://assets/Rock-export.png" id="4_14nv6"]
+[ext_resource type="Texture2D" uid="uid://g73c5k0ibrbq" path="res://assets/grass.png" id="5_5jo4u"]
+[ext_resource type="PackedScene" uid="uid://cim64uhw2yfop" path="res://scenes/player.tscn" id="6_2isfp"]
+[ext_resource type="Script" uid="uid://u6cnrbtcg6sl" path="res://scripts/Player.cs" id="7_plkj7"]
+[ext_resource type="Texture2D" uid="uid://6y1slr5c4q5k" path="res://assets/flag animation.png" id="8_a2d2x"]
+[ext_resource type="Script" uid="uid://bk241knka0qca" path="res://scripts/GameManager.cs" id="9_oxljx"]
+[ext_resource type="PackedScene" uid="uid://ddkad476sfori" path="res://scenes/LVL7.tscn" id="10_5hrxq"]
+[ext_resource type="PackedScene" uid="uid://0q6tslvct806" path="res://scenes/knight.tscn" id="11_f5vmd"]
+[ext_resource type="Script" uid="uid://lu2pj354f2a3" path="res://scripts/DiceUI.cs" id="12_6jkoh"]
+[ext_resource type="FontFile" uid="uid://hlkm612fle32" path="res://Scribble-Regular.otf" id="13_8s1jn"]
+[ext_resource type="PackedScene" uid="uid://dqatt43tvomrx" path="res://scenes/background.tscn" id="14_fiemf"]
+[ext_resource type="Script" uid="uid://c26s1pnx8bxyh" path="res://scripts/CameraManager.cs" id="15_b3yhw"]
+[ext_resource type="Script" uid="uid://d3b1wp6e846ov" path="res://scripts/Pickaxe.cs" id="16_48h5d"]
+[ext_resource type="Texture2D" uid="uid://bq48w1nf4rdra" path="res://assets/PickAxe.png" id="17_mbgx0"]
+[ext_resource type="Script" uid="uid://cm8o7pyp60bt4" path="res://scripts/MiniMapToggle.cs" id="18_de4x5"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwreq"]
+texture = ExtResource("2_qicts")
+texture_region_size = Vector2i(64, 64)
+1:1/next_alternative_id = 2
+1:1/0 = 0
+1:1/0/custom_data_0 = true
+1:1/1 = 1
+1:1/1/modulate = Color(0.694118, 0.87451, 0.592157, 1)
+1:1/1/custom_data_0 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4hhit"]
+texture = ExtResource("3_ishfu")
+texture_region_size = Vector2i(64, 64)
+0:0/next_alternative_id = 2
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+0:0/0/custom_data_1 = true
+0:0/1 = 1
+0:0/1/modulate = Color(0.692687, 0.872634, 0.59342, 1)
+0:0/1/custom_data_0 = true
+0:0/1/custom_data_1 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_bppmc"]
+texture = ExtResource("4_14nv6")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/custom_data_2 = true
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_7c8wn"]
+texture = ExtResource("5_5jo4u")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5xw3q"]
+tile_size = Vector2i(64, 64)
+custom_data_layer_0/name = "is_walkable"
+custom_data_layer_0/type = 1
+custom_data_layer_1/name = "is_forest"
+custom_data_layer_1/type = 1
+custom_data_layer_2/name = "is_rock"
+custom_data_layer_2/type = 1
+sources/0 = SubResource("TileSetAtlasSource_dwreq")
+sources/1 = SubResource("TileSetAtlasSource_4hhit")
+sources/2 = SubResource("TileSetAtlasSource_bppmc")
+sources/3 = SubResource("TileSetAtlasSource_7c8wn")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5g376"]
+atlas = ExtResource("8_a2d2x")
+region = Rect2(0, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f8vx2"]
+atlas = ExtResource("8_a2d2x")
+region = Rect2(60, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aa35m"]
+atlas = ExtResource("8_a2d2x")
+region = Rect2(120, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bppmc"]
+atlas = ExtResource("8_a2d2x")
+region = Rect2(180, 0, 60, 60)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bxcpi"]
+atlas = ExtResource("8_a2d2x")
+region = Rect2(240, 0, 60, 60)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mbx00"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5g376")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f8vx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aa35m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bppmc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bxcpi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bxcpi"]
+size = Vector2(24, 29)
+
+[node name="Main" type="Node2D" node_paths=PackedStringArray("Grid")]
+script = ExtResource("1_5hrxq")
+Grid = NodePath("Layer0")
+SubViewPortPath = NodePath("MiniMapLayer/SubViewportContainer/SubViewport")
+
+[node name="Layer0" type="TileMapLayer" parent="."]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD3////AAABAAEAAAD3/wAAAAABAAEAAQD3/wEAAAABAAEAAAD3/wIAAAABAAEAAQD3/wMAAAABAAEAAAD3/wQAAAABAAEAAQD3/wUAAAABAAEAAAD4////AAABAAEAAQD4/wAAAAABAAEAAAD4/wEAAAABAAEAAQD4/wIAAQAAAAAAAAD4/wMAAAABAAEAAQD4/wQAAAABAAEAAAD4/wUAAAABAAEAAQD5////AAABAAEAAAD5/wAAAQAAAAAAAQD5/wEAAAABAAEAAAD5/wIAAAABAAEAAQD5/wMAAAABAAEAAAD5/wQAAAABAAEAAQD5/wUAAAABAAEAAAD6////AAABAAEAAQD6/wAAAAABAAEAAAD6/wEAAAABAAEAAQD6/wIAAAABAAEAAAD6/wMAAAABAAEAAQD6/wQAAAABAAEAAAD6/wUAAAABAAEAAQD7////AAABAAEAAAD7/wAAAAABAAEAAQD7/wEAAAABAAEAAAD7/wIAAAABAAEAAQD7/wMAAQAAAAAAAAD7/wQAAAABAAEAAQD7/wUAAAABAAEAAAD8////AAABAAEAAQD8/wAAAAABAAEAAAD8/wEAAAABAAEAAQD8/wIAAAABAAEAAAD8/wMAAAABAAEAAQD8/wQAAAABAAEAAAD8/wUAAAABAAEAAQD9////AAABAAEAAAD9/wAAAAABAAEAAQD9/wEAAAABAAEAAAD9/wIAAAABAAEAAQD9/wMAAAABAAEAAAD9/wQAAAABAAEAAQD9/wUAAAABAAEAAAD+////AAABAAEAAQD+/wAAAAABAAEAAAD+/wEAAAABAAEAAQD+/wIAAAABAAEAAAD+/wMAAAABAAEAAQD+/wQAAAABAAEAAAD+/wUAAQAAAAAAAQD1////AAABAAEAAAD1/wAAAAABAAEAAQD1/wEAAAABAAEAAAD1/wIAAAABAAEAAQD1/wMAAAABAAEAAAD1/wQAAAABAAEAAQD1/wUAAAABAAEAAAD2////AAABAAEAAQD2/wAAAAABAAEAAAD2/wEAAAABAAEAAQD2/wIAAAABAAEAAAD2/wMAAAABAAEAAQD2/wQAAQAAAAAAAAD2/wUAAAABAAEAAQD+//f/AAABAAEAAQD+//j/AAABAAEAAAD+//n/AAABAAEAAQD+//r/AAABAAEAAAD+//v/AAABAAEAAQD+//z/AAABAAEAAAD+//3/AAABAAEAAQD///f/AAABAAEAAAD///j/AAABAAEAAQD///n/AAABAAEAAAD///r/AAABAAEAAQD///v/AQAAAAAAAAD///z/AAABAAEAAQD///3/AQAAAAAAAAAAAPf/AAABAAEAAQAAAPj/AAABAAEAAAAAAPn/AAABAAEAAQAAAPr/AAABAAEAAAAAAPv/AAABAAEAAQAAAPz/AAABAAEAAAAAAP3/AAABAAEAAQABAPf/AAABAAEAAAABAPj/AQAAAAAAAQABAPn/AAABAAEAAAABAPr/AAABAAEAAQABAPv/AAABAAEAAAABAPz/AAABAAEAAQABAP3/AAABAAEAAAACAPf/AAABAAEAAQACAPj/AAABAAEAAAACAPn/AAABAAEAAQACAPr/AQAAAAAAAAACAPv/AAABAAEAAQACAPz/AAABAAEAAAACAP3/AAABAAEAAQADAPf/AAABAAEAAAADAPj/AAABAAEAAQADAPn/AAABAAEAAAADAPr/AAABAAEAAQADAPv/AAABAAEAAAADAPz/AAABAAEAAQADAP3/AAABAAEAAAAEAPf/AAABAAEAAQAEAPj/AAABAAEAAAAEAPn/AQAAAAAAAQAEAPr/AAABAAEAAAAEAPv/AAABAAEAAQAEAPz/AAABAAEAAAAEAP3/AAABAAEAAQADAAIAAAABAAEAAQADAAMAAAABAAEAAAADAAQAAAABAAEAAQADAAUAAAABAAEAAAADAAYAAAABAAEAAQADAAcAAAABAAEAAAADAAgAAAABAAEAAQADAAkAAAABAAEAAAADAAoAAAABAAEAAQAEAAIAAAABAAEAAAAEAAMAAAABAAEAAQAEAAQAAAABAAEAAAAEAAUAAAABAAEAAQAEAAYAAAABAAEAAAAEAAcAAAABAAEAAQAEAAgAAAABAAEAAAAEAAkAAAABAAEAAQAEAAoAAAABAAEAAAAFAAIAAAABAAEAAQAFAAMAAAABAAEAAAAFAAQAAAABAAEAAQAFAAUAAQAAAAAAAAAFAAYAAAABAAEAAQAFAAcAAAABAAEAAAAFAAgAAAABAAEAAQAFAAkAAQAAAAAAAAAFAAoAAAABAAEAAQAGAAIAAAABAAEAAAAGAAMAAAABAAEAAQAGAAQAAAABAAEAAAAGAAUAAAABAAEAAQAGAAYAAAABAAEAAAAGAAcAAAABAAEAAQAGAAgAAAABAAEAAAAGAAkAAAABAAEAAQAGAAoAAAABAAEAAAAHAAIAAAABAAEAAQAHAAMAAQAAAAAAAAAHAAQAAAABAAEAAQAHAAUAAAABAAEAAAAHAAYAAAABAAEAAQAHAAcAAAABAAEAAAAHAAgAAAABAAEAAQAHAAkAAAABAAEAAAAHAAoAAAABAAEAAQAIAAIAAAABAAEAAAAIAAMAAAABAAEAAQAIAAQAAAABAAEAAAAIAAUAAAABAAEAAQAIAAYAAAABAAEAAAAIAAcAAAABAAEAAQAIAAgAAAABAAEAAAAIAAkAAAABAAEAAQAIAAoAAAABAAEAAAAJAAIAAAABAAEAAQAJAAMAAAABAAEAAAAJAAQAAAABAAEAAQAJAAUAAAABAAEAAAAJAAYAAAABAAEAAQAJAAcAAQAAAAAAAAAJAAgAAAABAAEAAQAJAAkAAAABAAEAAAAJAAoAAAABAAEAAQAKAAIAAAABAAEAAAAKAAMAAAABAAEAAQAKAAQAAAABAAEAAAAKAAUAAAABAAEAAQAKAAYAAAABAAEAAAAKAAcAAAABAAEAAQAKAAgAAAABAAEAAAAKAAkAAAABAAEAAQAKAAoAAAABAAEAAAALAAIAAAABAAEAAQALAAMAAAABAAEAAAALAAQAAAABAAEAAQALAAUAAAABAAEAAAALAAYAAAABAAEAAQALAAcAAAABAAEAAAALAAgAAAABAAEAAQALAAkAAAABAAEAAAALAAoAAAABAAEAAQAMAAIAAAABAAEAAAAMAAMAAAABAAEAAQAMAAQAAAABAAEAAAAMAAUAAAABAAEAAQAMAAYAAAABAAEAAAAMAAcAAAABAAEAAQAMAAgAAAABAAEAAAAMAAkAAQAAAAAAAQAMAAoAAAABAAEAAAANAAIAAAABAAEAAQANAAMAAQAAAAAAAAANAAQAAAABAAEAAQANAAUAAAABAAEAAAANAAYAAAABAAEAAQANAAcAAAABAAEAAAANAAgAAAABAAEAAQANAAkAAAABAAEAAAANAAoAAAABAAEAAQAOAAIAAAABAAEAAAAOAAMAAQAAAAAAAQAOAAQAAAABAAEAAAAOAAUAAAABAAEAAQAOAAYAAAABAAEAAAAOAAcAAAABAAEAAQAOAAgAAAABAAEAAAAOAAkAAAABAAEAAQAOAAoAAAABAAEAAAAKAPn/AAABAAEAAQAKAPr/AAABAAEAAAAKAPv/AAABAAEAAQAKAPz/AAABAAEAAAAKAP3/AAABAAEAAQALAPn/AAABAAEAAAALAPr/AAABAAEAAQALAPv/AAABAAEAAAALAPz/AAABAAEAAQALAP3/AAABAAEAAAAMAPn/AAABAAEAAQAMAPr/AAABAAEAAAAMAPv/AAABAAEAAQAMAPz/AQAAAAAAAAAMAP3/AAABAAEAAQANAPn/AAABAAEAAAANAPr/AAABAAEAAQANAPv/AAABAAEAAAANAPz/AAABAAEAAQANAP3/AAABAAEAAAAOAPn/AAABAAEAAQAOAPr/AAABAAEAAAAOAPv/AAABAAEAAQAOAPz/AAABAAEAAAAOAP3/AAABAAEAAQAPAPn/AAABAAEAAAAPAPr/AAABAAEAAQAPAPv/AQAAAAAAAAAPAPz/AAABAAEAAQAPAP3/AAABAAEAAAAQAPn/AAABAAEAAQAQAPr/AAABAAEAAAAQAPv/AQAAAAAAAQAQAPz/AAABAAEAAAAQAP3/AAABAAEAAQARAPn/AAABAAEAAAARAPr/AAABAAEAAQARAPv/AAABAAEAAAARAPz/AAABAAEAAQARAP3/AAABAAEAAAD//wIAAAABAAEAAQD//wMAAAABAAEAAAD//wQAAAABAAEAAQD//wUAAAABAAEAAAAAAAIAAAABAAEAAAAAAAMAAAABAAEAAQAAAAQAAAABAAEAAAAAAAUAAAABAAEAAQABAAIAAAABAAEAAQABAAMAAQAAAAAAAAABAAQAAQAAAAAAAQABAAUAAAABAAEAAAACAAIAAAABAAEAAAACAAMAAAABAAEAAQACAAQAAAABAAEAAAACAAUAAAABAAEAAQAPAP7/AAABAAEAAQAPAP//AAABAAEAAAAPAAAAAAABAAEAAQAPAAEAAAABAAEAAAAPAAIAAAABAAEAAQAPAAMAAAABAAEAAAAPAAQAAAABAAEAAQAQAP7/AAABAAEAAAAQAP//AQAAAAAAAQAQAAAAAAABAAEAAAAQAAEAAAABAAEAAQAQAAIAAAABAAEAAAAQAAMAAAABAAEAAQAQAAQAAQAAAAAAAAARAP7/AAABAAEAAQARAP//AAABAAEAAAARAAAAAAABAAEAAQARAAEAAAABAAEAAAARAAIAAQAAAAAAAQARAAMAAAABAAEAAAARAAQAAAABAAEAAQAJAP3/AQAAAAAAAAAJAP7/AAABAAEAAQAJAP//AgAAAAAAAAAJAAAAAAABAAEAAQAJAAEAAAABAAEAAAAKAP7/AAABAAEAAAAKAP//AAABAAEAAQAKAAAAAgAAAAAAAAAKAAEAAAABAAEAAQD+//7/AgAAAAAAAAALAP7/AAABAAEAAQA=")
+tile_set = SubResource("TileSet_5xw3q")
+use_kinematic_bodies = true
+
+[node name="Player" parent="." instance=ExtResource("6_2isfp")]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(38, 60)
+script = ExtResource("7_plkj7")
+
+[node name="StartPos" type="Marker2D" parent="."]
+position = Vector2(-669, 347)
+
+[node name="EndPos" type="Marker2D" parent="."]
+position = Vector2(300, -552)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="EndPos"]
+modulate = Color(0, 0.784806, 0.507306, 1)
+sprite_frames = SubResource("SpriteFrames_mbx00")
+autoplay = "default"
+
+[node name="GameManager" type="Node2D" parent="." node_paths=PackedStringArray("Player", "GridManager", "StartPoint", "EndPoint", "DiceUI", "CameraManager")]
+script = ExtResource("9_oxljx")
+Player = NodePath("../Player")
+enemiesContainer = NodePath("../Enemies")
+GridManager = NodePath("..")
+StartPoint = NodePath("../StartPos")
+EndPoint = NodePath("../EndPos")
+DiceUI = NodePath("../DiceUI")
+CameraManager = NodePath("../CameraManager")
+NextLevel = ExtResource("10_5hrxq")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy1" parent="Enemies" node_paths=PackedStringArray("_cameraManager") instance=ExtResource("11_f5vmd")]
+position = Vector2(-151, -30.0001)
+_cameraManager = NodePath("../../CameraManager")
+
+[node name="Enemy2" parent="Enemies" node_paths=PackedStringArray("_cameraManager") instance=ExtResource("11_f5vmd")]
+position = Vector2(805, 542)
+_cameraManager = NodePath("../../CameraManager")
+
+[node name="Enemy3" parent="Enemies" node_paths=PackedStringArray("_cameraManager") instance=ExtResource("11_f5vmd")]
+position = Vector2(672, -93)
+_cameraManager = NodePath("../../CameraManager")
+
+[node name="Enemy4" parent="Enemies" node_paths=PackedStringArray("_cameraManager") instance=ExtResource("11_f5vmd")]
+position = Vector2(101, -420)
+_cameraManager = NodePath("../../CameraManager")
+
+[node name="DiceUI" type="CanvasLayer" parent="." node_paths=PackedStringArray("RollButton", "ResultLabel")]
+script = ExtResource("12_6jkoh")
+PlayerPath = NodePath("../Player")
+RollButton = NodePath("RollDice")
+ResultLabel = NodePath("ResultLabel")
+
+[node name="RollDice" type="Button" parent="DiceUI"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -99.0
+offset_top = -61.0
+offset_right = 109.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_disabled_color = Color(0.207972, 0.117763, 7.21961e-08, 1)
+theme_override_colors/font_outline_color = Color(0.888873, 0.605901, 0.478711, 1)
+theme_override_colors/font_color = Color(0.963644, 0.515146, 0, 1)
+theme_override_fonts/font = ExtResource("13_8s1jn")
+theme_override_font_sizes/font_size = 35
+text = "Roll Dice
+"
+
+[node name="ResultLabel" type="Label" parent="DiceUI"]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.69
+anchor_right = 0.5
+anchor_bottom = 0.69
+offset_left = -86.0
+offset_top = -45.12
+offset_right = 87.0
+offset_bottom = 28.88
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.988235, 0.458824, 0.258824, 1)
+theme_override_colors/font_shadow_color = Color(0.317405, 0.165215, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("13_8s1jn")
+theme_override_font_sizes/font_size = 35
+text = "Result: -"
+horizontal_alignment = 1
+
+[node name="Background" parent="." instance=ExtResource("14_fiemf")]
+
+[node name="CameraManager" type="Node" parent="." node_paths=PackedStringArray("Camera")]
+script = ExtResource("15_b3yhw")
+Camera = NodePath("Camera2D")
+
+[node name="Camera2D" type="Camera2D" parent="CameraManager"]
+
+[node name="Pickaxe" type="Area2D" parent="."]
+position = Vector2(939, -351)
+script = ExtResource("16_48h5d")
+
+[node name="Sprite2D" type="Sprite2D" parent="Pickaxe"]
+position = Vector2(-2, 1)
+scale = Vector2(1.3125, 1.3125)
+texture = ExtResource("17_mbgx0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pickaxe"]
+position = Vector2(-2, 0.5)
+shape = SubResource("RectangleShape2D_bxcpi")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="PickaxeIcon" type="TextureRect" parent="UI"]
+visible = false
+offset_right = 88.0
+offset_bottom = 81.0
+texture = ExtResource("17_mbgx0")
+
+[node name="MiniMapLayer" type="CanvasLayer" parent="."]
+script = ExtResource("18_de4x5")
+MiniMapLayer = NodePath(".")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MiniMapLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -512.0
+offset_bottom = 512.0
+grow_horizontal = 0
+
+[node name="SubViewport" type="SubViewport" parent="MiniMapLayer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="MinimapRoot" type="Node2D" parent="MiniMapLayer/SubViewportContainer/SubViewport"]
+position = Vector2(-1023, -189)
+
+[node name="MinimapCamera" type="Camera2D" parent="MiniMapLayer/SubViewportContainer/SubViewport/MinimapRoot"]
+position = Vector2(1213, 584)
+zoom = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="MiniMapLayer/SubViewportContainer/SubViewport"]
+position = Vector2(129, 129)
+
+[node name="Panel" type="Panel" parent="MiniMapLayer/SubViewportContainer"]
+z_index = -2
+layout_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="MiniMapLayer/SubViewportContainer/Panel"]
+layout_mode = 0
+offset_left = 19.0
+offset_top = -2.0
+offset_right = 515.0
+offset_bottom = 344.0
+color = Color(0.239216, 0, 0.278431, 0.752941)

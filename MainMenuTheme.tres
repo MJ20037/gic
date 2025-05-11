@@ -1,0 +1,7 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://berd4qwulpvj0"]
+
+[ext_resource type="FontFile" uid="uid://hlkm612fle32" path="res://Scribble-Regular.otf" id="1_hp61l"]
+
+[resource]
+default_font = ExtResource("1_hp61l")
+default_font_size = 20

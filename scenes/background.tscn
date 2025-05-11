@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqatt43tvomrx"]
+
+[ext_resource type="PackedScene" uid="uid://dv5fkksyouvr6" path="res://scenes/MovingCircle.tscn" id="1_bkp1e"]
+[ext_resource type="Script" uid="uid://cemn6ecsp4s45" path="res://scripts/Background.cs" id="1_y0upk"]
+
+[node name="Background" type="CanvasLayer"]
+layer = -100
+script = ExtResource("1_y0upk")
+MovingCircleScene = ExtResource("1_bkp1e")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.105882, 0, 0.2, 1)

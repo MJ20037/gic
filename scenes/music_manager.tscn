@@ -1,0 +1,16 @@
+[gd_scene load_steps=8 format=3 uid="uid://b4ufpf4ahmam3"]
+
+[ext_resource type="Script" uid="uid://elkmvy4w8w76" path="res://scripts/MusicManager.cs" id="1_hu6vc"]
+[ext_resource type="AudioStream" uid="uid://cs6ae34wfhcyh" path="res://Audio/jazz-background-music-338663.mp3" id="2_p07gy"]
+[ext_resource type="AudioStream" uid="uid://no6oulnvct72" path="res://Audio/jazz-background-music-325355.mp3" id="3_fb0y8"]
+[ext_resource type="AudioStream" uid="uid://cuifql1nrykth" path="res://Audio/jazz-background-music-333352.mp3" id="4_fkbch"]
+[ext_resource type="AudioStream" uid="uid://rcht2th8gqbx" path="res://Audio/funky-jazz-big-band-piece-225127.mp3" id="5_r6agn"]
+[ext_resource type="AudioStream" uid="uid://davmbe187rsyp" path="res://Audio/jazz-happy-110855.mp3" id="6_suxwa"]
+[ext_resource type="AudioStream" uid="uid://bj4uo6pi55dq6" path="res://Audio/that-jazz-260655.mp3" id="7_r5t12"]
+
+[node name="MusicManager" type="Node2D"]
+script = ExtResource("1_hu6vc")
+Songs = [ExtResource("2_p07gy"), ExtResource("3_fb0y8"), ExtResource("4_fkbch"), ExtResource("5_r6agn"), ExtResource("6_suxwa"), ExtResource("7_r5t12")]
+
+[node name="Player" type="AudioStreamPlayer2D" parent="."]
+max_distance = 2e+07

@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3 uid="uid://u8g1rjylfly5"]
+
+[ext_resource type="Script" uid="uid://dm5vvg050j0y2" path="res://scripts/EndScreen.cs" id="1_hvipn"]
+[ext_resource type="PackedScene" uid="uid://dqatt43tvomrx" path="res://scenes/background.tscn" id="2_olkmo"]
+[ext_resource type="FontFile" uid="uid://hlkm612fle32" path="res://Scribble-Regular.otf" id="3_hxmv1"]
+
+[sub_resource type="FontVariation" id="FontVariation_yqorp"]
+base_font = ExtResource("3_hxmv1")
+
+[node name="EndScreen" type="Node2D"]
+script = ExtResource("1_hvipn")
+
+[node name="Background" parent="." instance=ExtResource("2_olkmo")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer"]
+modulate = Color(0.929781, 0.485612, 0, 1)
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.5
+offset_top = -84.5
+offset_right = 400.5
+offset_bottom = 84.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_selected_color = Color(0.817659, 0.531966, 7.70092e-07, 1)
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_yqorp")
+theme_override_font_sizes/normal_font_size = 40
+text = "And so the goblin finally managed to escape from the guards. But will it be the last time?"
+tab_size = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer"]
+modulate = Color(0.929781, 0.485612, 0, 1)
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -407.0
+offset_top = 53.0
+offset_right = 394.0
+offset_bottom = 222.0
+grow_horizontal = 2
+theme_override_colors/font_selected_color = Color(0.817659, 0.531966, 7.70092e-07, 1)
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("FontVariation_yqorp")
+theme_override_font_sizes/normal_font_size = 90
+text = "Thanks for playing"
+tab_size = 6
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="CanvasLayer"]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -82.0
+offset_top = 134.0
+offset_right = 79.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.468481, 0.184498, 1)
+theme_override_fonts/font = ExtResource("3_hxmv1")
+theme_override_font_sizes/font_size = 38
+text = "Main Menu"
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -249.0
+offset_top = -86.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.995893, 0.554488, 0, 1)
+theme_override_fonts/font = ExtResource("3_hxmv1")
+theme_override_font_sizes/font_size = 36
+text = "- By Ulysses7"
